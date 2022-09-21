@@ -82,4 +82,3 @@
   }
   playGame()
 
-console.log('hello')
