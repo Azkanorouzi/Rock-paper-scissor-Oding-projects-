@@ -81,3 +81,5 @@
     }
   }
   playGame()
+
+console.log('hello')
