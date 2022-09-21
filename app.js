@@ -1,4 +1,4 @@
-function stop() {
+
   const ROCK_PAPER_SCISSOR = ['✂️', '📃', '🪨']
   /* Store user and computer score */
   let computerScore = 0;
@@ -81,5 +81,3 @@ function stop() {
     }
   }
   playGame()
-}
-console.log('hello')
