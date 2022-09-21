@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* difficulty level */
+
+/* Preloader */
+#preLoader {
+  background: radial-gradient(black 50%, #111);
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  z-index: 100;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+.preloader-hidden {
+  opacity: 0;
+  display: none;
+}

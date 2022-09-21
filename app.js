@@ -1,4 +1,17 @@
+loadDocument(1000);
 
+function loadDocument(speed) {
+  const PRE_LOADER = document.getElementById("preLoader");
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      PRE_LOADER.classList.add('preloader-hidden')
+      PRE_LOADER.style.transition = `${speed}ms`;
+    },speed)
+  })
+}
+
+function playNormal()
+{
   const ROCK_PAPER_SCISSOR = ['✂️', '📃', '🪨']
   /* Store user and computer score */
   let computerScore = 0;
@@ -81,4 +94,5 @@
     }
   }
   playGame()
+}
 
