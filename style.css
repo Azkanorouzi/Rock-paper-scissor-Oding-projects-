@@ -2,15 +2,26 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Press Start 2P', cursive;
 }
-/* difficulty level */
-
+/* Font */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+/* Variables */
+:root {
+  --default-background: linear-gradient(black 50%, #111);
+  --default-text-color: #f2f2f2;
+  --easy-background: #32cd32;
+  --normal-background: #12ffff;
+  --hard-background: #ffa500;
+  --impossible-background: #ff0044;
+}
 /* Preloader */
 #preLoader {
-  background: radial-gradient(black 50%, #111);
-  height: 100vh;
+  background: var(--default-background);
+  height: 100%;
   width: 100%;
-  position: absolute;
+  position: fixed;
+  top: 0;
   z-index: 100;
   display: grid;
   justify-content: center;
@@ -18,5 +29,128 @@
 }
 .preloader-hidden {
   opacity: 0;
-  display: none;
+}
+/* Main */
+main {
+  min-height: 100vh;
+  background: var(--default-background);
+  color: var(--default-text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap:100px;
+}
+/* main logo */
+.main__logo {
+  animation: appear 1s forwards;
+  opacity: 0;
+  animation-delay: 1.3s;
+}
+/* ======== difficulty level ======== */
+.difficultyLevel__text {
+  opacity: 0;
+  transform: scale(0);
+  animation: appearText 1s forwards ;
+  animation-delay: 1.3s;
+}
+.difficultyLevel__buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0px;
+}
+.difficultyLevel__button {
+  width: 170px;
+  height: 60px;
+}
+/* Removing black border from buttons */
+button
+,button:active
+,button:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+.difficultyLevel__button {
+  font-size: 2rem;
+  background: transparent;
+  color: var(--default-text-color);
+  opacity: 0;
+  animation: appearButton 1s forwards ;
+  transition: 0.5s;
+}
+.difficultyLevel__button:hover{
+    text-shadow: 10px 10px 10px currentColor;
+}
+.button-easy {
+  animation-delay: 1.5s;
+}
+.button-easy:hover{
+  color: var(--easy-background);
+}
+.button-normal {
+  animation-delay: 1.7s;
+}
+.button-normal:hover{
+  color: var(--normal-background);
+}
+.button-hard {
+  animation-delay: 1.9s;
+}
+.button-hard:hover{
+  color: var(--hard-background);
+}
+.button-impossible {
+  animation-delay: 2.1s;
+}
+.button-impossible:hover {
+  color: var(--impossible-background);
+}
+/* ======== difficulty level end ======== */
+/* ========  difficulty level Backgrounds ======== */
+.background-easy {
+  background: linear-gradient(var(--easy-background), black 40%);
+}
+.background-normal {
+  background: linear-gradient(var(--normal-background), black 40%);
+}
+.background-hard {
+  background: linear-gradient(var(--hard-background), black 40%);
+}
+.background-impossible {
+  background: linear-gradient(var(--impossible-background), black 40%);
+}
+
+/* Animations */
+@keyframes appearText {
+  80% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(-100px);
+  }
+}
+@keyframes appear {
+  80% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(-100px);
+  }
+}
+@keyframes appearButton {
+    80% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(-10px);
+  }
 }

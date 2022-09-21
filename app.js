@@ -1,15 +1,67 @@
-loadDocument(1000);
-
-function loadDocument(speed) {
+/* loadDocument(1000); */
+// Preloader
+/* function loadDocument(speed) {
   const PRE_LOADER = document.getElementById("preLoader");
+  // Adding event listener to preloader
   window.addEventListener('load', () => {
     setTimeout(() => {
+      // making preloader disappear
       PRE_LOADER.classList.add('preloader-hidden')
       PRE_LOADER.style.transition = `${speed}ms`;
     },speed)
+    setTimeout(() => {
+      PRE_LOADER.style.display = "none";
+    },speed * 2)
   })
+} */
+changeDifficultyBackground()
+// hover effect for difficulty levels
+function changeDifficultyBackground() {
+  // getting all difficulty buttons
+  const buttons = document.querySelectorAll('.difficultyLevel__button');
+  // getting Main element (for changing background)
+  const main = document.querySelector('main');
+  // iterating through buttons
+  for (button of buttons) {
+    button.addEventListener('mouseleave', () => {
+      main.classList.remove("background-easy")
+      main.classList.remove("background-hard")
+      main.classList.remove("background-normal")
+      main.classList.remove("background-impossible")
+    })
+    // Checking what button user hovered on
+    button.addEventListener('mouseover', (e) => {
+      // Easy button hover
+      if (e.target.classList.contains("button-easy")) {
+        main.classList.remove("background-hard")
+        main.classList.remove("background-normal")
+        main.classList.remove("background-impossible")
+        main.classList.add("background-easy")
+      } 
+      // Normal button hover
+      else if (e.target.classList.contains("button-normal")) {
+        main.classList.remove("background-hard")
+        main.classList.remove("background-easy")
+        main.classList.remove("background-impossible")
+        main.classList.add("background-normal")
+      }
+      // Hard button hover
+      else if (e.target.classList.contains("button-hard")) {
+        main.classList.remove("background-easy")
+        main.classList.remove("background-normal")
+        main.classList.remove("background-impossible")
+        main.classList.add("background-hard")
+      }
+      // Impossible button hover
+      else if (e.target.classList.contains("button-impossible")) {
+        main.classList.remove("background-hard")
+        main.classList.remove("background-normal")
+        main.classList.remove("background-easy")
+        main.classList.add("background-impossible")
+      }
+    })
+  }
 }
-
 function playNormal()
 {
   const ROCK_PAPER_SCISSOR = ['✂️', '📃', '🪨']
