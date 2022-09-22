@@ -15,51 +15,51 @@
   })
 } */
 changeDifficultyBackground()
-// hover effect for difficulty levels
 function changeDifficultyBackground() {
   // getting all difficulty buttons
   const buttons = document.querySelectorAll('.difficultyLevel__button');
   // getting Main element (for changing background)
   const main = document.querySelector('main');
+  // Change background event
+  changeBackground = function (e) {
+    console.log(e.type);
+    // Easy button hover
+    if (e.target.classList.contains("button-easy")) {
+      main.classList.add("background-easy")
+    }
+    // Normal button hover
+    else if (e.target.classList.contains("button-normal")) {
+      main.classList.add("background-normal")
+    }
+    // Hard button hover
+    else if (e.target.classList.contains("button-hard")) {
+      main.classList.add("background-hard")
+    }
+    // Impossible button hover
+    else if (e.target.classList.contains("button-impossible")) {
+      main.classList.add("background-impossible")
+    }
+    if (e.type === 'click') {
+      for (button of buttons) {
+        // Makes background remains the same color when difficulty level is chosen
+        button.removeEventListener('mouseleave', removeClasses);
+      }
+    }
+  }
   // iterating through buttons
   for (button of buttons) {
-    button.addEventListener('mouseleave', () => {
-      main.classList.remove("background-easy")
-      main.classList.remove("background-hard")
-      main.classList.remove("background-normal")
-      main.classList.remove("background-impossible")
-    })
+    button.addEventListener('mouseleave', removeClasses)
     // Checking what button user hovered on
-    button.addEventListener('mouseover', (e) => {
-      // Easy button hover
-      if (e.target.classList.contains("button-easy")) {
-        main.classList.remove("background-hard")
-        main.classList.remove("background-normal")
-        main.classList.remove("background-impossible")
-        main.classList.add("background-easy")
-      } 
-      // Normal button hover
-      else if (e.target.classList.contains("button-normal")) {
-        main.classList.remove("background-hard")
-        main.classList.remove("background-easy")
-        main.classList.remove("background-impossible")
-        main.classList.add("background-normal")
-      }
-      // Hard button hover
-      else if (e.target.classList.contains("button-hard")) {
-        main.classList.remove("background-easy")
-        main.classList.remove("background-normal")
-        main.classList.remove("background-impossible")
-        main.classList.add("background-hard")
-      }
-      // Impossible button hover
-      else if (e.target.classList.contains("button-impossible")) {
-        main.classList.remove("background-hard")
-        main.classList.remove("background-normal")
-        main.classList.remove("background-easy")
-        main.classList.add("background-impossible")
-      }
-    })
+    button.addEventListener('mouseover', changeBackground)
+    button.addEventListener('click',
+      changeBackground)
+    
+  }
+  function removeClasses() {
+    main.classList.remove("background-easy")
+    main.classList.remove("background-normal")
+    main.classList.remove("background-hard")
+    main.classList.remove("background-impossible")
   }
 }
 function playNormal()
