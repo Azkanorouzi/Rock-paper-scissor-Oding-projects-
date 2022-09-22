@@ -14,8 +14,8 @@
     <!-- ======= Difficulty level ======= -->
     <article id="difficultyLevel" class="difficultyLevel__container">
           <!-- Main logo -->
-      <img src="assets/logo.png" alt="logo" width="160" height="160" class="main__logo">
-      <h2 class="difficultyLevel__text">CHOOSE DIFFICULTY LEVEL</h2>
+      <img src="assets/logo.png" alt="logo" width="140" height="160" class="main__logo">
+      <h2 class="difficultyLevel__text">Rock Paper scissor</h2>
       <!-- Difficulty level button -->
       <section class="difficultyLevel__buttons">
         <button type="button" class="difficultyLevel__button button-easy">Easy</button>
@@ -24,6 +24,42 @@
         <button type="button" class="difficultyLevel__button button-impossible">Impossible</button>
       </section>
     </div>
+    </article>
+    <article class="game-container">
+      <!-- computer -->
+      <section id="computer">
+        <div class="computer-choice">
+          <img src="assets/rock.png" alt="" width="140" class="computer-choice-img" dataset-choice="rock">
+        </div>
+      </section>
+      <!-- Round winner -->
+      <div class="game-round-winner-container">
+        <p class="computer-score scores">0</p>
+        <h2 class="game-round-winner-title">VS</h2>
+        <p class="player-score scores">0</p>
+      </div>
+            <!-- player -->
+      <section id="player">
+        <div class="player-choice">
+          <img src="assets/rock.png" alt="playerChoice" width="140" class="player-choice-img" dataset-choice="rock">
+        </div>
+        <!-- player buttons -->
+        <section class="player-buttons">
+          <!-- rock -->
+          <div class="player-button player-button-rock" data-button="rock">
+            <img src="assets/rock.png" alt="rock" width="50">
+          </div>
+          <!-- paper -->
+          <div class="player-button player-button-paper" data-button="paper">
+            <img src="assets/paper.png" alt="paper" width="70">
+          </div>
+          <!-- scissor -->
+          <div class="player-button player-button-scissor"
+          data-button="scissor">
+            <img src="assets/scissor.png" alt="scissor" width="50">
+          </div>
+        </section>
+      </section>
     </article>
     <!-- ======= Difficulty level end ======= -->
   <!-- ======= PRE-Loader ======= -->
