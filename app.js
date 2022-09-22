@@ -14,15 +14,21 @@
     },speed * 2)
   })
 } */
-changeDifficultyBackground()
-function changeDifficultyBackground() {
-  // getting all difficulty buttons
-  const buttons = document.querySelectorAll('.difficultyLevel__button');
-  // getting Main element (for changing background)
-  const main = document.querySelector('main');
+// getting all difficulty buttons
+const difficultyButtons = document.querySelectorAll('.difficultyLevel__button');
+// getting Main element (for changing background)
+const main = document.querySelector('main');
+// getting difficulty__level container to make it disappear when a button is clicked
+const difficultyLevelContainer = document.querySelector('.difficultyLevel__container')
+chooseDifficulty();
+playGame();
+/* ======================================== */
+/* ==========choose difficulty function==========*/
+/* ======================================== */
+function chooseDifficulty() {
   // Change background event
   changeBackground = function (e) {
-    console.log(e.type);
+    console.log(e);
     // Easy button hover
     if (e.target.classList.contains("button-easy")) {
       main.classList.add("background-easy")
@@ -38,16 +44,22 @@ function changeDifficultyBackground() {
     // Impossible button hover
     else if (e.target.classList.contains("button-impossible")) {
       main.classList.add("background-impossible")
+      renderGame();
+      playGameImpossible();
     }
     if (e.type === 'click') {
-      for (button of buttons) {
+      for (button of difficultyButtons) {
         // Makes background remains the same color when difficulty level is chosen
         button.removeEventListener('mouseleave', removeClasses);
+        // Makes background remains the same color when difficulty level is chosen
+        button.removeEventListener('mouseover', changeBackground);
+        // making difficulty__level page disappear
+        difficultyLevelContainer.classList.add('difficulty__level--disappear')
       }
     }
   }
   // iterating through buttons
-  for (button of buttons) {
+  for (button of difficultyButtons) {
     button.addEventListener('mouseleave', removeClasses)
     // Checking what button user hovered on
     button.addEventListener('mouseover', changeBackground)
@@ -62,6 +74,36 @@ function changeDifficultyBackground() {
     main.classList.remove("background-impossible")
   }
 }
+/* ======================================== */
+/* ==========choose difficulty end==========*/
+/* ======================================== */
+/* ======================================== */
+/* ========== Play game funcrio    ==========*/
+/* ======================================== */
+
+function playGame() {
+
+  function renderGame() {
+    console.log('render game');
+  }
+  function playGameNormal() {
+    console.log('play game normal');
+  }
+  function playGameEasy() {
+    console.log('play game normal');
+  }
+  function playGameHard() {
+    console.log('play game hard');
+  }
+}
+/* ======================================== */
+/* ========== Play game function end ==========*/
+/* ======================================== */
+
+function playGameImpossible() {
+  console.log('play game impossible');
+}
+
 function playNormal()
 {
   const ROCK_PAPER_SCISSOR = ['✂️', '📃', '🪨']
