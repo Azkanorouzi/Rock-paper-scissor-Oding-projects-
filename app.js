@@ -1,19 +1,4 @@
 /* loadDocument(1000); */
-// Preloader
-function loadDocument(speed) {
-  const PRE_LOADER = document.getElementById("preLoader");
-  // Adding event listener to preloader
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      // making preloader disappear
-      PRE_LOADER.classList.add('preloader-hidden')
-      PRE_LOADER.style.transition = `${speed}ms`;
-    },speed)
-    setTimeout(() => {
-      PRE_LOADER.style.display = "none";
-    },speed * 2)
-  })
-} 
 'use strict';
 // getting all difficulty buttons
 const difficultyButtons = document.querySelectorAll('.difficultyLevel__button');

@@ -15,21 +15,6 @@
   --hard-background: #ffa500;
   --impossible-background: #ff0044;
 }
-/* Preloader */
-#preLoader {
-  background: var(--default-background);
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  z-index: 100;
-  display: grid;
-  justify-content: center;
-  align-items: center;
-}
-.preloader-hidden {
-  opacity: 0;
-}
 /* Main */
 main {
   height: 100vh;
