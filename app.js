@@ -25,7 +25,7 @@ const difficultyLevelContainer = document.querySelector('.difficultyLevel__conta
 const gameContainer = document.querySelector('.game-container')
 // Buttons
 const playerButtons = document.querySelectorAll('.player-button')
-loadDocument(500)
+loadDocument(0)
 chooseDifficulty();
 playGame();
 /* ======================================== */
