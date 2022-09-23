@@ -1,6 +1,6 @@
 /* loadDocument(1000); */
 // Preloader
-/* function loadDocument(speed) {
+function loadDocument(speed) {
   const PRE_LOADER = document.getElementById("preLoader");
   // Adding event listener to preloader
   window.addEventListener('load', () => {
@@ -13,7 +13,7 @@
       PRE_LOADER.style.display = "none";
     },speed * 2)
   })
-} */
+} 
 'use strict';
 // getting all difficulty buttons
 const difficultyButtons = document.querySelectorAll('.difficultyLevel__button');
@@ -25,7 +25,7 @@ const difficultyLevelContainer = document.querySelector('.difficultyLevel__conta
 const gameContainer = document.querySelector('.game-container')
 // Buttons
 const playerButtons = document.querySelectorAll('.player-button')
-
+loadDocument(500)
 chooseDifficulty();
 playGame();
 /* ======================================== */
