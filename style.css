@@ -82,7 +82,7 @@ button
   border: none;
   box-shadow: none;
 }
-.difficultyLevel__button {
+.difficultyLevel__button, .button-restart {
   width: 170px;
   height: 60px;
   font-size: 2rem;
@@ -268,4 +268,32 @@ to {
 }
 .player-choice, .computer-choice {
   height: 180px;
+}
+/* Result section */
+.result-container {
+  z-index: -1;
+  display: none;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-direction: column;
+  padding: 5px 30px;
+  min-height: 100vh;
+  text-align: center;
+  position: absolute;
+  color: white;
+  background: black;
+}
+.result-title {
+  font-size: 30px;
+}
+.button-restart{
+  margin-left: auto;
+  margin-right: auto;
+}
+.button-restart:hover {
+  filter: drop-shadow(2px 2px 2px white);
 }

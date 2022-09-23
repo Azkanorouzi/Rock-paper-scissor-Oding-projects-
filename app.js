@@ -94,6 +94,8 @@ function playGame() {
   const playerChoiceImg = document.querySelector('.player-choice-img');
   // player choice
   let playerChoice;
+  // computer choice random number
+  let computerChoice ;
   // Computer img (rock paper or scissor)
   const computerChoiceImg = document.querySelector('.computer-choice-img');
   // scores
@@ -101,10 +103,8 @@ function playGame() {
   let computerScoreEl = document.querySelector('.computer-score');
   let playerScore = 0;
   let playerScoreEl = document.querySelector('.player-score');
-  // computer choice random number
-  let computerChoice ;
-  // use chance
-  let playerChance;
+  let playerChance = -1;
+  let userWillWin = 0;
   // rock paper Scissor
   const ROCK_PAPER_SCISSOR = ['rock', 'paper', 'scissor']
   // computer choice
@@ -113,19 +113,30 @@ function playGame() {
       // Rendering the game right away when a button is clicked
       renderGame()
       if (button.classList.contains("button-easy")) {
-        playerChance = 0;
+        playerChance = 200;
       }
-      else if (button.classList.contains("button-normal")) {
-        playGameNormal();
-        
-      } 
+      else if (button.classList.contains('button-normal')) {
+        playerChance = 100;
+      }
       else if (button.classList.contains('button-hard')) {
-        playGameHard();
+        playerChance = 70;
       }
       else if (button.classList.contains('button-impossible')) {
-        playGameImpossible();
+        playerChance = 20;
       }
     })
+  }
+  function calculatePlayerChance() {
+    let roundChance = Math.trunc(Math.random() * 100) + 1;
+    if (playerChance - Math.trunc(Math.random() * 100) + 1 > 150)
+    {
+      userWillWin = 2;
+    }
+    else if (playerChance >= roundChance) {
+        userWillWin  = 1;
+    } else if (playerChance <= roundChance) {
+        userWillWin = 0;
+    }
   }
   // Renders the game and change the playerChoiceImg when user choose a button
   function renderGame() {
@@ -133,9 +144,11 @@ function playGame() {
     // setting computer and user choice
     playerButtons.forEach((btn) => {
       btn.addEventListener('click', () => {
+        // Calculating user score
+        calculatePlayerChance()
         playerChoice = btn.dataset.button;
         applyPlayerChoice(playerChoice)
-        computerChoice = getComputerChoice(playerChance);
+        computerChoice = getComputerChoice(userWillWin);
         compareChoices(playerChance)
         applyComputerChoice(computerChoice)
       }) 
@@ -183,13 +196,17 @@ function playGame() {
     return roundWinner;
   }
   function updateScores(roundWinner) {
-    if (roundWinner === 'c') {
+    if (roundWinner === 'c' && computerScore !== 5) {
       computerScore++;
-    } else if (roundWinner === 'u') {
+    } else if (roundWinner === 'u' && playerScore !== 5) {
       playerScore++;
     }
     computerScoreEl.textContent = computerScore;
     playerScoreEl.textContent = playerScore; 
+    // Getting the winner
+    if (playerScore === 5 || computerScore === 5) {
+      getWinner()
+    }
   }
   /* This function always make computer win */
   function makeComputerWin() {
@@ -202,7 +219,7 @@ function playGame() {
         return 0;
     }
   }
-  /* this function always make player win */
+  /* This function always make user win */
   function makePlayerWin() {
     switch (playerChoice) {
       case 'paper':
@@ -213,107 +230,35 @@ function playGame() {
         return 1;
     }
   }
-  function getComputerChoice(playerChance) {
+  function getComputerChoice(userWillWin) {
     // Generates a number between 0 and 2 (ROCK_PAPER_SCISSOR is zero base)
     const RANDOM_NUMBER = Math.floor(Math.random() * 3)
     // Returning the result
     computerChoice = ROCK_PAPER_SCISSOR[RANDOM_NUMBER];
-    /* Making player win */
-    if (playerChance === 1) computerChoice = ROCK_PAPER_SCISSOR[makePlayerWin()];
-    /* making player win */
-    else if (playerChance === 0) computerChoice = ROCK_PAPER_SCISSOR[makeComputerWin()];
+    /* making computer win */
+    if (userWillWin === 0) computerChoice = ROCK_PAPER_SCISSOR[makeComputerWin()];
+    if (userWillWin === 2) computerChoice = ROCK_PAPER_SCISSOR[makePlayerWin()]
     return computerChoice;
+  }
+  function getWinner() {
+    let resultPage = document.querySelector('.result-container')
+    let resultTitle = document.querySelector('.result-title');
+    let resultText = document.querySelector('.result-text');
+    resultPage.style.zIndex = -1;
+    if (playerScore > computerScore) {
+      resultTitle.textContent = "You Won!";
+      resultText.textContent = "Wow you did a great job here";
+      resultPage.style.zIndex = 100;
+    } else if (playerScore < computerScore) {
+      resultTitle.textContent = "Computer Won!";
+      resultText.textContent = "Oh no, what about another round?";
+      resultPage.style.zIndex = 100;
+    } else {
+      alert('something went wrong ....')
+    }
   }
 } 
 
 /* ======================================== */
 /* ========== Play game function end ==========*/
 /* ======================================== */
-
-
-function playNormal()
-{
-  const ROCK_PAPER_SCISSOR = ['✂️', '📃', '🪨']
-  /* Store user and computer score */
-  let computerScore = 0;
-  let userScore = 0;
-  /* Getting the user choice */
-  function getPlayerChoice() {
-    /* Store user's selection */
-    let playerSelection;
-    /* This loop will continue until user choose rock scissor or paper*/
-    do {
-      playerSelection = prompt('Choose one -> ✂️ 📃 🪨')
-    } while (playerSelection !== '✂️' && playerSelection !== '📃' && playerSelection !== '🪨')
-    /* Returning the user's selection */
-    return playerSelection;
-  }
-  /* Computer choice */
-  function getComputerChoice() {
-    // Generates a number between 0 and 2 (ROCK_PAPER_SCISSOR is zero base)
-    const RANDOM_NUMBER = Math.floor(Math.random() * 3)
-    // Returning the result
-    let computerChoice = ROCK_PAPER_SCISSOR[RANDOM_NUMBER];
-    alert(`computer chose -> ${computerChoice}`);
-    return computerChoice;
-  }
-  /* if user won returns u if computer c if draw returns d  */
-  function playRound(playerSelection, computerSelection) {
-    let roundWinner = 'd';
-    /* Comparing playerSelection and computerSelection */
-    switch (playerSelection) {
-      // When user selects scissor
-      case '✂️':
-        if (computerSelection === '🪨') roundWinner = 'c';
-        else if (computerSelection === '📃') roundWinner = 'u';
-        break;
-      // When user selects paper
-      case '📃':
-        if (computerSelection === '✂️') roundWinner = 'c';
-        else if (computerSelection === '🪨') roundWinner = 'u';
-        break;
-      // When user selects rock
-      case '🪨':
-        if (computerSelection === '📃') roundWinner = 'c';
-        else if (computerSelection === '✂️') roundWinner = 'u';
-        break;
-    }
-    return roundWinner;
-  }
-  /*updatesTheScore given the round winner*/
-  function updateScores(roundWinner) {
-    if (roundWinner === 'c') {
-      computerScore++;
-    } else if (roundWinner === 'u') {
-      userScore++;
-    }
-    alert(`🧒: ${userScore}       VS       💻: ${computerScore} `)
-  }
-  function playGame() {
-    let roundWinner;
-    /* This while loop iterates until user or computer score is greater */
-    while ((computerScore - userScore) < 3 && (computerScore - userScore) > -3) {
-      if (computerScore === 5 || userScore === 5) {
-        break;
-      }
-      // Getting the round winner.
-      roundWinner = playRound(getPlayerChoice(), getComputerChoice())
-      // Updating scores
-      updateScores(roundWinner)
-    }
-    // Getting the winner
-    getWinner();
-  }
-
-  function getWinner() {
-    if (userScore > computerScore) {
-      alert('🧒 WON! ⭐✨🎊🎉');
-    } else if (userScore < computerScore) {
-      alert('💻 WON! 💔 maybe next time ....')
-    } else {
-      alert('something went wrong ....')
-    }
-  }
-  playGame()
-}
-
