@@ -1,4 +1,4 @@
-/* loadDocument(1000); */
+
 'use strict';
 // getting all difficulty buttons
 const difficultyButtons = document.querySelectorAll('.difficultyLevel__button');
@@ -10,7 +10,7 @@ const difficultyLevelContainer = document.querySelector('.difficultyLevel__conta
 const gameContainer = document.querySelector('.game-container')
 // Buttons
 const playerButtons = document.querySelectorAll('.player-button')
-loadDocument(0)
+
 chooseDifficulty();
 playGame();
 /* ======================================== */
@@ -46,8 +46,8 @@ function chooseDifficulty() {
         // setting display on none 
         setTimeout(() => {
           difficultyLevelContainer.style.display = 'none';
-        },500)
-        
+        }, 500)
+
       }
     }
   }
@@ -58,7 +58,7 @@ function chooseDifficulty() {
     button.addEventListener('mouseover', changeBackground)
     button.addEventListener('click',
       changeBackground)
-    
+
   }
   function removeClasses() {
     main.classList.remove("background-easy")
@@ -80,7 +80,7 @@ function playGame() {
   // player choice
   let playerChoice;
   // computer choice random number
-  let computerChoice ;
+  let computerChoice;
   // Computer img (rock paper or scissor)
   const computerChoiceImg = document.querySelector('.computer-choice-img');
   // scores
@@ -113,14 +113,13 @@ function playGame() {
   }
   function calculatePlayerChance() {
     let roundChance = Math.trunc(Math.random() * 100) + 1;
-    if (playerChance - Math.trunc(Math.random() * 100) + 1 > 150)
-    {
+    if (playerChance - Math.trunc(Math.random() * 100) + 1 > 150) {
       userWillWin = 2;
     }
     else if (playerChance >= roundChance) {
-        userWillWin  = 1;
+      userWillWin = 1;
     } else if (playerChance <= roundChance) {
-        userWillWin = 0;
+      userWillWin = 0;
     }
   }
   // Renders the game and change the playerChoiceImg when user choose a button
@@ -136,7 +135,7 @@ function playGame() {
         computerChoice = getComputerChoice(userWillWin);
         compareChoices(playerChance)
         applyComputerChoice(computerChoice)
-      }) 
+      })
     })
   }
   function applyPlayerChoice(choice) {
@@ -187,7 +186,7 @@ function playGame() {
       playerScore++;
     }
     computerScoreEl.textContent = computerScore;
-    playerScoreEl.textContent = playerScore; 
+    playerScoreEl.textContent = playerScore;
     // Getting the winner
     if (playerScore === 5 || computerScore === 5) {
       getWinner()
@@ -242,7 +241,7 @@ function playGame() {
       alert('something went wrong ....')
     }
   }
-} 
+}
 
 /* ======================================== */
 /* ========== Play game function end ==========*/
